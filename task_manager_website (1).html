@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Task Manager</title>
+<style>
+body{
+    font-family: Arial;
+    background-color:#f2f2f2;
+}
+
+.container{
+    width:400px;
+    margin:50px auto;
+    background:white;
+    padding:20px;
+    border:1px solid #ccc;
+}
+
+h2{
+    text-align:center;
+}
+
+input{
+    width:70%;
+    padding:8px;
+}
+
+button{
+    padding:8px;
+}
+
+li{
+    margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Simple Task Manager</h2>
+
+<input type="text" id="task" placeholder="Enter task">
+<button onclick="addTask()">Add Task</button>
+
+<ul id="list"></ul>
+
+</div>
+
+<script>
+
+function addTask()
+{
+    var taskInput = document.getElementById("task");
+    var taskText = taskInput.value;
+
+    if(taskText == "")
+    {
+        alert("Enter a task first");
+        return;
+    }
+
+    var li = document.createElement("li");
+    li.innerHTML = taskText;
+
+    li.onclick = function()
+    {
+        li.style.textDecoration = "line-through";
+    }
+
+    var deleteBtn = document.createElement("button");
+    deleteBtn.innerHTML = "Delete";
+
+    deleteBtn.onclick = function()
+    {
+        li.remove();
+    }
+
+    li.appendChild(deleteBtn);
+
+    document.getElementById("list").appendChild(li);
+
+    taskInput.value = "";
+}
+
+</script>
+
+</body>
+</html>
